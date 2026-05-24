@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Wildframe — Immersive wildlife photography showcasing Earth's most magnificent creatures through stunning scroll animations and cinematic imagery.">
+  <title>Wildframe — The Art of Wildlife</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦁</text></svg>">
+</head>
+<body>
+  <!-- Cursor Glow -->
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <!-- Preloader -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-text">Wildframe</div>
+    <div class="preloader-bar"></div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <a href="#" class="nav-logo">Wildframe</a>
+    <ul class="nav-links">
+      <li><a href="#featured">Featured</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#species">Species</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <img src="images/lion.png" alt="Majestic African Lion at Golden Hour" id="heroImg">
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <div class="badge-dot"></div>
+        <span>Wildlife Photography Collection</span>
+      </div>
+      <h1>Where the <span class="gold">Wild</span> Things Roam</h1>
+      <p class="hero-sub">Journey through untamed landscapes and witness nature's most extraordinary creatures in their purest form.</p>
+      <a href="#featured" class="hero-cta">
+        Explore Collection
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 5v14M5 12l7 7 7-7"/>
+        </svg>
+      </a>
+    </div>
+    <div class="scroll-indicator">
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- Featured Section -->
+  <section class="featured" id="featured">
+    <div class="section-header" data-animate>
+      <span class="section-tag">Featured Wildlife</span>
+      <h2 class="section-title">Iconic <span class="gold">Creatures</span></h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="featured-grid">
+      <div class="featured-card" data-animate data-lightbox>
+        <img src="images/tiger.png" alt="Bengal Tiger in Misty Forest" loading="lazy">
+        <div class="card-overlay">
+          <span class="card-tag">Apex Predator</span>
+          <h3 class="card-title">Bengal Tiger</h3>
+          <p class="card-desc">The majestic Bengal tiger prowls through bamboo forests, a symbol of raw power and untamed grace.</p>
+        </div>
+        <div class="card-border"></div>
+      </div>
+      <div class="featured-card" data-animate data-lightbox>
+        <img src="images/snow_leopard.png" alt="Snow Leopard on Himalayan Cliff" loading="lazy">
+        <div class="card-overlay">
+          <span class="card-tag">Ghost of the Mountains</span>
+          <h3 class="card-title">Snow Leopard</h3>
+          <p class="card-desc">Elusive and ethereal, the snow leopard reigns over the highest peaks of Central Asia.</p>
+        </div>
+        <div class="card-border"></div>
+      </div>
+      <div class="featured-card" data-animate data-lightbox>
+        <img src="images/eagle.png" alt="Bald Eagle in Majestic Flight" loading="lazy">
+        <div class="card-overlay">
+          <span class="card-tag">Aerial Sovereign</span>
+          <h3 class="card-title">Bald Eagle</h3>
+          <p class="card-desc">With a wingspan of over 7 feet, the bald eagle commands the skies with unmatched precision.</p>
+        </div>
+        <div class="card-border"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Parallax - Elephant -->
+  <section class="parallax-section" id="parallax1">
+    <div class="parallax-bg" data-parallax="0.3">
+      <img src="images/elephant.png" alt="African Elephant at Sunset" loading="lazy">
+    </div>
+    <div class="parallax-content" data-animate>
+      <span class="section-tag">Gentle Giants</span>
+      <h2>The <span class="gold">Elephant</span></h2>
+      <p>Earth's largest land animal, the African elephant embodies wisdom, strength, and deep familial bonds that span generations across the golden savanna.</p>
+      <div class="parallax-stat">
+        <div class="stat-item">
+          <h3>13,000</h3>
+          <span>Pounds Average</span>
+        </div>
+        <div class="stat-item">
+          <h3>70</h3>
+          <span>Year Lifespan</span>
+        </div>
+        <div class="stat-item">
+          <h3>100+</h3>
+          <span>Herd Size</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Horizontal Scroll Gallery -->
+  <section class="gallery-section" id="gallery">
+    <div class="section-header" data-animate>
+      <span class="section-tag">Scroll Gallery</span>
+      <h2 class="section-title">Into the <span class="gold">Wild</span></h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="gallery-track" id="galleryTrack">
+      <div class="gallery-item" data-lightbox>
+        <img src="images/wolf.png" alt="Gray Wolf in Winter Forest" loading="lazy">
+        <div class="g-overlay"><h4>Gray Wolf</h4></div>
+      </div>
+      <div class="gallery-item" data-lightbox>
+        <img src="images/polar_bear.png" alt="Polar Bear with Aurora" loading="lazy">
+        <div class="g-overlay"><h4>Polar Bear</h4></div>
+      </div>
+      <div class="gallery-item" data-lightbox>
+        <img src="images/cheetah.png" alt="Cheetah in Full Sprint" loading="lazy">
+        <div class="g-overlay"><h4>Cheetah</h4></div>
+      </div>
+      <div class="gallery-item" data-lightbox>
+        <img src="images/panda.png" alt="Giant Panda in Bamboo" loading="lazy">
+        <div class="g-overlay"><h4>Giant Panda</h4></div>
+      </div>
+      <div class="gallery-item" data-lightbox>
+        <img src="images/fox.png" alt="Red Fox in Autumn" loading="lazy">
+        <div class="g-overlay"><h4>Red Fox</h4></div>
+      </div>
+      <div class="gallery-item" data-lightbox>
+        <img src="images/dolphin.png" alt="Dolphins Leaping at Sunset" loading="lazy">
+        <div class="g-overlay"><h4>Dolphin</h4></div>
+      </div>
+      <div class="gallery-item" data-lightbox>
+        <img src="images/owl.png" alt="Great Horned Owl at Twilight" loading="lazy">
+        <div class="g-overlay"><h4>Great Horned Owl</h4></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Parallax - Wolf -->
+  <section class="parallax-section" id="parallax2">
+    <div class="parallax-bg" data-parallax="0.25">
+      <img src="images/wolf.png" alt="Gray Wolf in Snowy Forest" loading="lazy">
+    </div>
+    <div class="parallax-content right" data-animate>
+      <span class="section-tag">Pack Hunter</span>
+      <h2>The <span class="gold">Wolf</span></h2>
+      <p>Masters of the pack, wolves embody loyalty and tactical brilliance. Their haunting howls echo across frozen landscapes, a symphony of the wild that has inspired legends for millennia.</p>
+      <div class="parallax-stat">
+        <div class="stat-item">
+          <h3>40</h3>
+          <span>MPH Top Speed</span>
+        </div>
+        <div class="stat-item">
+          <h3>15</h3>
+          <span>Pack Members</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quote Section -->
+  <section class="quote-section" data-animate>
+    <blockquote>"In every walk with nature, one receives far more than he seeks."</blockquote>
+    <div class="quote-author">— John Muir</div>
+  </section>
+
+  <!-- Masonry Grid -->
+  <section class="masonry-section" id="species">
+    <div class="section-header" data-animate>
+      <span class="section-tag">Species Archive</span>
+      <h2 class="section-title">Nature's <span class="gold">Masterpieces</span></h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="masonry-grid">
+      <div class="masonry-item" data-animate data-lightbox>
+        <img src="images/gorilla.png" alt="Silverback Mountain Gorilla" loading="lazy">
+        <div class="m-overlay"><span>Gorilla</span></div>
+      </div>
+      <div class="masonry-item" data-animate data-lightbox>
+        <img src="images/peacock.png" alt="Indian Peacock Display" loading="lazy">
+        <div class="m-overlay"><span>Peacock</span></div>
+      </div>
+      <div class="masonry-item" data-animate data-lightbox>
+        <img src="images/whale.png" alt="Humpback Whale Breaching" loading="lazy">
+        <div class="m-overlay"><span>Whale</span></div>
+      </div>
+      <div class="masonry-item" data-animate data-lightbox>
+        <img src="images/fox.png" alt="Red Fox in Autumn" loading="lazy">
+        <div class="m-overlay"><span>Red Fox</span></div>
+      </div>
+      <div class="masonry-item" data-animate data-lightbox>
+        <img src="images/owl.png" alt="Great Horned Owl" loading="lazy">
+        <div class="m-overlay"><span>Owl</span></div>
+      </div>
+      <div class="masonry-item" data-animate data-lightbox>
+        <img src="images/dolphin.png" alt="Dolphins at Sunset" loading="lazy">
+        <div class="m-overlay"><span>Dolphin</span></div>
+      </div>
+      <div class="masonry-item" data-animate data-lightbox>
+        <img src="images/cheetah.png" alt="Cheetah Sprint" loading="lazy">
+        <div class="m-overlay"><span>Cheetah</span></div>
+      </div>
+      <div class="masonry-item" data-animate data-lightbox>
+        <img src="images/polar_bear.png" alt="Polar Bear Family" loading="lazy">
+        <div class="m-overlay"><span>Polar Bear</span></div>
+      </div>
+      <div class="masonry-item" data-animate data-lightbox>
+        <img src="images/panda.png" alt="Giant Panda" loading="lazy">
+        <div class="m-overlay"><span>Panda</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Counter Section -->
+  <section class="counter-section">
+    <div class="counter-grid">
+      <div class="counter-item" data-animate>
+        <div class="counter-num" data-target="8700000">0</div>
+        <div class="counter-label">Known Species</div>
+      </div>
+      <div class="counter-item" data-animate>
+        <div class="counter-num" data-target="41000">0</div>
+        <div class="counter-label">Threatened Species</div>
+      </div>
+      <div class="counter-item" data-animate>
+        <div class="counter-num" data-target="195">0</div>
+        <div class="counter-label">Countries Protecting</div>
+      </div>
+      <div class="counter-item" data-animate>
+        <div class="counter-num" data-target="15">0</div>
+        <div class="counter-label">Images Captured</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer" id="about">
+    <div class="footer-logo">Wildframe</div>
+    <p>Dedicated to showcasing the raw beauty of our planet's wildlife. Every image tells a story of survival, grace, and the enduring spirit of nature.</p>
+    <ul class="footer-links">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#featured">Featured</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#species">Species</a></li>
+    </ul>
+    <div class="footer-copy">&copy; 2026 Wildframe. All rights reserved. Built with passion for wildlife.</div>
+  </footer>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose">&times;</button>
+    <img src="" alt="Wildlife Lightbox" id="lightboxImg">
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
