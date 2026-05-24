@@ -17,9 +17,10 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
   scrollbar-width: thin;
   scrollbar-color: var(--accent) var(--bg-primary);
+  overflow-y: scroll;
 }
 
 body {
@@ -28,6 +29,8 @@ body {
   color: var(--text-primary);
   overflow-x: hidden;
   line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 ::-webkit-scrollbar { width: 6px; }
@@ -42,8 +45,10 @@ body {
   background: radial-gradient(circle, rgba(200,164,90,0.06) 0%, transparent 70%);
   pointer-events: none;
   z-index: 9999;
-  transform: translate(-50%, -50%);
+  will-change: transform;
+  transform: translate3d(-50%, -50%, 0);
   transition: opacity 0.3s;
+  contain: strict;
 }
 
 /* PRELOADER */
@@ -119,14 +124,16 @@ body {
 }
 .hero-bg {
   position: absolute; inset: 0;
+  will-change: transform;
 }
 .hero-bg img {
   width: 100%; height: 100%; object-fit: cover;
   filter: brightness(0.35);
-  transform: scale(1.1);
+  transform: scale3d(1.1, 1.1, 1);
   transition: transform 8s ease-out;
+  will-change: transform;
 }
-.hero.in-view .hero-bg img { transform: scale(1); }
+.hero.in-view .hero-bg img { transform: scale3d(1, 1, 1); }
 .hero-overlay {
   position: absolute; inset: 0;
   background: linear-gradient(to bottom, rgba(10,10,15,0.3) 0%, rgba(10,10,15,0.1) 40%, rgba(10,10,15,0.7) 80%, var(--bg-primary) 100%);
@@ -210,10 +217,11 @@ body {
 /* SECTION COMMONS */
 .section-header {
   text-align: center; margin-bottom: 80px;
-  opacity: 0; transform: translateY(40px);
-  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0; transform: translate3d(0, 40px, 0);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
 }
-.section-header.in-view { opacity: 1; transform: translateY(0); }
+.section-header.in-view { opacity: 1; transform: translate3d(0, 0, 0); }
 .section-tag {
   font-size: 0.75rem; letter-spacing: 4px;
   text-transform: uppercase; color: var(--accent);
@@ -243,15 +251,17 @@ body {
 .featured-card {
   position: relative; border-radius: 20px; overflow: hidden;
   aspect-ratio: 3/4; cursor: pointer;
-  opacity: 0; transform: translateY(60px);
-  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0; transform: translate3d(0, 60px, 0);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s;
+  will-change: transform, opacity;
 }
-.featured-card.in-view { opacity: 1; transform: translateY(0); }
+.featured-card.in-view { opacity: 1; transform: translate3d(0, 0, 0); }
 .featured-card:nth-child(2) { transition-delay: 0.15s; }
 .featured-card:nth-child(3) { transition-delay: 0.3s; }
 .featured-card img {
   width: 100%; height: 100%; object-fit: cover;
-  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
 }
 .featured-card:hover img { transform: scale(1.08); }
 .featured-card .card-overlay {
@@ -295,20 +305,23 @@ body {
 }
 .parallax-bg {
   position: absolute; inset: -20%;
+  will-change: transform;
 }
 .parallax-bg img {
   width: 100%; height: 100%; object-fit: cover;
   filter: brightness(0.3);
+  will-change: transform;
 }
 .parallax-content {
   position: relative; z-index: 2;
   max-width: 700px; padding: 0 80px;
-  opacity: 0; transform: translateX(-60px);
-  transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0; transform: translate3d(-60px, 0, 0);
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
 }
-.parallax-content.in-view { opacity: 1; transform: translateX(0); }
-.parallax-content.right { margin-left: auto; transform: translateX(60px); }
-.parallax-content.right.in-view { transform: translateX(0); }
+.parallax-content.in-view { opacity: 1; transform: translate3d(0, 0, 0); }
+.parallax-content.right { margin-left: auto; transform: translate3d(60px, 0, 0); }
+.parallax-content.right.in-view { transform: translate3d(0, 0, 0); }
 .parallax-content h2 {
   font-family: 'Playfair Display', serif;
   font-size: clamp(2.5rem, 5vw, 4rem);
@@ -336,18 +349,21 @@ body {
   display: flex; gap: 24px;
   padding: 0 60px;
   width: max-content;
-  transition: transform 0.1s linear;
+  will-change: transform;
+  /* NO CSS transition — JS RAF handles momentum for 120fps */
 }
 .gallery-item {
   flex-shrink: 0; width: 380px; height: 500px;
   border-radius: 16px; overflow: hidden;
   position: relative; cursor: pointer;
+  contain: layout style;
 }
 .gallery-item img {
   width: 100%; height: 100%; object-fit: cover;
-  transition: transform 0.6s;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
 }
-.gallery-item:hover img { transform: scale(1.06); }
+.gallery-item:hover img { transform: scale3d(1.06, 1.06, 1); }
 .gallery-item .g-overlay {
   position: absolute; inset: 0;
   background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 40%);
@@ -370,15 +386,17 @@ body {
   break-inside: avoid; margin-bottom: 24px;
   border-radius: 16px; overflow: hidden;
   position: relative; cursor: pointer;
-  opacity: 0; transform: translateY(40px);
-  transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0; transform: translate3d(0, 40px, 0);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
 }
-.masonry-item.in-view { opacity: 1; transform: translateY(0); }
+.masonry-item.in-view { opacity: 1; transform: translate3d(0, 0, 0); }
 .masonry-item img {
   width: 100%; display: block;
-  transition: transform 0.6s, filter 0.6s;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s;
+  will-change: transform;
 }
-.masonry-item:hover img { transform: scale(1.05); filter: brightness(0.7); }
+.masonry-item:hover img { transform: scale3d(1.05, 1.05, 1); filter: brightness(0.7); }
 .masonry-item .m-overlay {
   position: absolute; inset: 0;
   display: flex; align-items: center; justify-content: center;
@@ -404,10 +422,11 @@ body {
   font-size: clamp(1.8rem, 4vw, 3rem);
   font-style: italic; line-height: 1.5;
   max-width: 900px; margin: 0 auto 30px;
-  opacity: 0; transform: translateY(40px);
-  transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0; transform: translate3d(0, 40px, 0);
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
 }
-.quote-section.in-view blockquote { opacity: 1; transform: translateY(0); }
+.quote-section.in-view blockquote { opacity: 1; transform: translate3d(0, 0, 0); }
 .quote-author {
   color: var(--accent); font-size: 0.85rem;
   letter-spacing: 3px; text-transform: uppercase;
@@ -428,10 +447,11 @@ body {
 }
 .counter-item {
   text-align: center;
-  opacity: 0; transform: translateY(30px);
-  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0; transform: translate3d(0, 30px, 0);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
 }
-.counter-item.in-view { opacity: 1; transform: translateY(0); }
+.counter-item.in-view { opacity: 1; transform: translate3d(0, 0, 0); }
 .counter-num {
   font-family: 'Playfair Display', serif;
   font-size: clamp(2.5rem, 5vw, 4rem);
