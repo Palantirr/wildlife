@@ -144,11 +144,17 @@ document.addEventListener('DOMContentLoaded', () => {
       galleryTrack.style.transform = `translateX(${currentTranslateX}px)`;
     });
 
-    // Wheel horizontal scroll
+    // Wheel horizontal scroll — only hijack when gallery has room left to scroll
     gallerySection.addEventListener('wheel', (e) => {
       if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-        e.preventDefault();
         const maxScroll = -(galleryTrack.scrollWidth - gallerySection.clientWidth + 120);
+        const atStart = currentTranslateX >= 0 && e.deltaY < 0;
+        const atEnd   = currentTranslateX <= maxScroll && e.deltaY > 0;
+
+        // If already at the edge, let the page scroll normally
+        if (atStart || atEnd) return;
+
+        e.preventDefault();
         currentTranslateX = Math.max(maxScroll, Math.min(0, currentTranslateX - e.deltaY * 2));
         galleryTrack.style.transform = `translateX(${currentTranslateX}px)`;
       }
